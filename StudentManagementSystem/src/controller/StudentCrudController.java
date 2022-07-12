@@ -54,5 +54,16 @@ public class StudentCrudController {
         return null;
     }
 
+    public static String getStudentId() throws SQLException, ClassNotFoundException {
+        ResultSet set = CrudUtil.execute("SELECT sId FROM Student ORDER BY sId DESC LIMIT 1");
+        if (set.next()) {
+            String id = set.getString("sId");
+            int newCustomerId = Integer.parseInt(id.replace("S", "")) + 1;
+            return String.format("S%03d", newCustomerId);
+        } else {
+            return "S001";
+        }
+    }
+
 
 }

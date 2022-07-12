@@ -23,7 +23,7 @@ public class DashBoardFormController {
     public JFXButton btnSaveStudent;
     public JFXButton btnUpdateStudent;
     public TableView<StudentTM> tblStudent;
-    public TableColumn colId;
+    public TableColumn colsId;
     public TableColumn colName;
     public TableColumn colEmail;
     public TableColumn colContact;
@@ -33,25 +33,40 @@ public class DashBoardFormController {
     public TextField txtSearchId;
 
     public  void initialize() {
-        colId.setCellValueFactory(new PropertyValueFactory<>("sId"));
+        colsId.setCellValueFactory(new PropertyValueFactory<>("sId"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         colContact.setCellValueFactory(new PropertyValueFactory<>("contact"));
         colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
         colNic.setCellValueFactory(new PropertyValueFactory<>("nic"));
+        colOption.setCellValueFactory(new PropertyValueFactory<>("btn"));
 
+
+        tblStudent.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+
+            if (newValue != null) {
+                txtStudentId.setText(newValue.getsId());
+                txtName.setText(newValue.getName());
+                txtEmail.setText(newValue.getEmail());
+                txtContact.setText(newValue.getContact());
+                txtAddress.setText(newValue.getAddress());
+                txtNic.setText(newValue.getNic());
+
+            }
+        });
         initUI();
         loadAllStudents();
     }
 
     public void initUI() {
         txtStudentId.clear();
+        txtStudentId.setText(setStudentId());
         txtName.clear();
         txtEmail.clear();
         txtContact.clear();
         txtAddress.clear();
         txtName.clear();
-        btnSaveStudent.setDisable(true);
+        txtName.requestFocus();
     }
 
     private void loadAllStudents() {
@@ -83,7 +98,6 @@ public class DashBoardFormController {
                             E.printStackTrace();
                         }
 
-                        // Remove Employee From tmList
                         tmList.remove(tm);
                     }
                 });
@@ -99,7 +113,6 @@ public class DashBoardFormController {
     public void saveStudentOnAction(ActionEvent actionEvent) {
         Student  s = new Student(txtStudentId.getText(), txtName.getText(), txtEmail.getText(),txtContact.getText(), txtAddress.getText(),txtNic.getText());
 
-        // Add new Customer to Customer table
         try {
             boolean isStudentSaved = new StudentCrudController().saveStudent(s);
             if (isStudentSaved) {
@@ -110,10 +123,8 @@ public class DashBoardFormController {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
 
-        // Clear the table data
         tmList.clear();
 
-        // Load all Customers to the TableView
         loadAllStudents();
 
     }
@@ -131,11 +142,11 @@ public class DashBoardFormController {
                 tm.setAddress((txtAddress.getText()));
                 tm.setNic((txtNic.getText()));
 
-                // Update Student
                 try{
                     boolean isStudentUpdated = new StudentCrudController().updateStudent(tm);
                     if (isStudentUpdated){
                         new Alert(Alert.AlertType.CONFIRMATION, "Updated!").show();
+
                     }else{
                         new Alert(Alert.AlertType.WARNING, "Try Again!").show();
                     }
@@ -144,7 +155,6 @@ public class DashBoardFormController {
                     e.printStackTrace();
                 }
 
-                // Clear the table data
                 tmList.clear();
                 loadAllStudents();
 
@@ -156,7 +166,7 @@ public class DashBoardFormController {
 
 
     public void txtSearchOnAction(ActionEvent actionEvent) {
-        String selectedStudentId=txtStudentId.getText();
+        String selectedStudentId=txtSearchId.getText();
 
         try {
             Student s= StudentCrudController.getStudent(selectedStudentId);
@@ -177,12 +187,24 @@ public class DashBoardFormController {
     }
 
     public void addStudentOnAction(ActionEvent actionEvent) {
-        txtStudentId.clear();
+        txtStudentId.setText(setStudentId());
         txtName.clear();
         txtEmail.clear();
         txtContact.clear();
         txtAddress.clear();
         txtName.clear();
-        btnSaveStudent.setDisable(false);
+        txtName.requestFocus();
+    }
+
+    public String setStudentId(){
+        try {
+            String sId = StudentCrudController.getStudentId();
+            txtStudentId.setText(sId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return "S001";
     }
 }
