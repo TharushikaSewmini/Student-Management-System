@@ -1,17 +1,17 @@
-package model;
+package view.tm;
 
 import java.time.LocalDate;
 
-public class Intake {
+public class IntakeTM {
     private String intakeId;
     private LocalDate startDate;
     private String description;
     private String courseId;
 
-    public Intake() {
+    public IntakeTM() {
     }
 
-    public Intake(String intakeId, LocalDate startDate, String description, String courseId) {
+    public IntakeTM(String intakeId, LocalDate startDate, String description, String courseId) {
         this.intakeId = intakeId;
         this.startDate = startDate;
         this.description = description;

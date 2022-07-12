@@ -1,16 +1,16 @@
-package model;
+package view.tm;
 
-public class Course {
+public class CourseTM {
     private String courseId;
     private String courseName;
     private Double cost;
     private String duration;
     private String subjectId;
 
-    public Course() {
+    public CourseTM() {
     }
 
-    public Course(String courseId, String courseName, Double cost, String duration, String subjectId) {
+    public CourseTM(String courseId, String courseName, Double cost, String duration, String subjectId) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.cost = cost;
