@@ -1,5 +1,7 @@
 package view.tm;
 
+import javafx.scene.control.Button;
+
 public class StudentTM {
     private String sId;
     private String name;
@@ -7,17 +9,19 @@ public class StudentTM {
     private String contact;
     private String address;
     private String nic;
+    private Button btn;
 
     public StudentTM() {
     }
 
-    public StudentTM(String sId, String name, String email, String contact, String address, String nic) {
+    public StudentTM(String sId, String name, String email, String contact, String address, String nic, Button btn) {
         this.sId = sId;
         this.name = name;
         this.email = email;
         this.contact = contact;
         this.address = address;
         this.nic = nic;
+        this.btn = btn;
     }
 
     public String getsId() {
@@ -78,5 +82,13 @@ public class StudentTM {
                 ", address='" + address + '\'' +
                 ", nic='" + nic + '\'' +
                 '}';
+    }
+
+    public Button getBtn() {
+        return btn;
+    }
+
+    public void setBtn(Button btn) {
+        this.btn = btn;
     }
 }
