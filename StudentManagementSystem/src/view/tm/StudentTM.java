@@ -72,23 +72,24 @@ public class StudentTM {
         this.nic = nic;
     }
 
-    @Override
-    public String toString() {
-        return "Student{" +
-                "sId='" + sId + '\'' +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", contact='" + contact + '\'' +
-                ", address='" + address + '\'' +
-                ", nic='" + nic + '\'' +
-                '}';
-    }
-
     public Button getBtn() {
         return btn;
     }
 
     public void setBtn(Button btn) {
         this.btn = btn;
+    }
+
+    @Override
+    public String toString() {
+        return "StudentTM{" +
+                "sId='" + sId + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", contact='" + contact + '\'' +
+                ", address='" + address + '\'' +
+                ", nic='" + nic + '\'' +
+                ", btn=" + btn +
+                '}';
     }
 }

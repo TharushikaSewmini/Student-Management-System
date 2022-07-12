@@ -23,7 +23,7 @@ public class DashBoardFormController {
     public JFXButton btnSaveStudent;
     public JFXButton btnUpdateStudent;
     public TableView<StudentTM> tblStudent;
-    public TableColumn colsId;
+    public TableColumn colId;
     public TableColumn colName;
     public TableColumn colEmail;
     public TableColumn colContact;
@@ -33,7 +33,7 @@ public class DashBoardFormController {
     public TextField txtSearchId;
 
     public  void initialize() {
-        colsId.setCellValueFactory(new PropertyValueFactory<>("sId"));
+        colId.setCellValueFactory(new PropertyValueFactory<>("sId"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         colContact.setCellValueFactory(new PropertyValueFactory<>("contact"));
@@ -60,7 +60,7 @@ public class DashBoardFormController {
 
     public void initUI() {
         txtStudentId.clear();
-        txtStudentId.setText(setStudentId());
+        setStudentId();
         txtName.clear();
         txtEmail.clear();
         txtContact.clear();
@@ -187,12 +187,13 @@ public class DashBoardFormController {
     }
 
     public void addStudentOnAction(ActionEvent actionEvent) {
-        txtStudentId.setText(setStudentId());
+        setStudentId();
         txtName.clear();
         txtEmail.clear();
         txtContact.clear();
         txtAddress.clear();
-        txtName.clear();
+        txtNic.clear();
+        txtSearchId.clear();
         txtName.requestFocus();
     }
 
