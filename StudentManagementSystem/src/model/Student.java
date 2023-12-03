@@ -1,7 +1,7 @@
 package model;
 
 public class Student {
-    private String sId;
+    private String id;
     private String name;
     private String email;
     private String contact;
@@ -12,7 +12,7 @@ public class Student {
     }
 
     public Student(String sId, String name, String email, String contact, String address, String nic) {
-        this.sId = sId;
+        this.id = sId;
         this.name = name;
         this.email = email;
         this.contact = contact;
@@ -20,12 +20,12 @@ public class Student {
         this.nic = nic;
     }
 
-    public String getsId() {
-        return sId;
+    public String getId() {
+        return id;
     }
 
-    public void setsId(String sId) {
-        this.sId = sId;
+    public void setId(String sId) {
+        this.id = sId;
     }
 
     public String getName() {
@@ -71,7 +71,7 @@ public class Student {
     @Override
     public String toString() {
         return "Student{" +
-                "sId='" + sId + '\'' +
+                "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", contact='" + contact + '\'' +

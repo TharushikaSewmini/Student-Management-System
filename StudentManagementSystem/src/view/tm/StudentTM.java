@@ -24,7 +24,7 @@ public class StudentTM {
         this.btn = btn;
     }
 
-    public String getsId() {
+    public String getId() {
         return sId;
     }
 

@@ -32,8 +32,8 @@ public class DashBoardFormController {
     public TableColumn colOption;
     public TextField txtSearchId;
 
-    public  void initialize() {
-        colId.setCellValueFactory(new PropertyValueFactory<>("sId"));
+    public void initialize() {
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         colContact.setCellValueFactory(new PropertyValueFactory<>("contact"));
@@ -45,7 +45,7 @@ public class DashBoardFormController {
         tblStudent.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 
             if (newValue != null) {
-                txtStudentId.setText(newValue.getsId());
+                txtStudentId.setText(newValue.getId());
                 txtName.setText(newValue.getName());
                 txtEmail.setText(newValue.getEmail());
                 txtContact.setText(newValue.getContact());
@@ -77,7 +77,7 @@ public class DashBoardFormController {
             ) {
                 Button btn= new Button("Delete");
 
-                StudentTM tm= new StudentTM(student.getsId(),student.getName(),student.getEmail(),student.getContact(), student.getAddress(),student.getNic(), btn);
+                StudentTM tm= new StudentTM(student.getId(),student.getName(),student.getEmail(),student.getContact(), student.getAddress(),student.getNic(), btn);
                 tmList.add(tm);
 
                 btn.setOnAction(e->{
@@ -135,7 +135,7 @@ public class DashBoardFormController {
 
         for (Student tm :obList
         ) {
-            if(tm.getsId().equals(txtStudentId.getText())){
+            if(tm.getId().equals(txtStudentId.getText())){
                 tm.setName(txtName.getText());
                 tm.setEmail(txtEmail.getText());
                 tm.setContact(txtContact.getText());
@@ -172,7 +172,7 @@ public class DashBoardFormController {
             Student s= StudentCrudController.getStudent(selectedStudentId);
 
             if(s!=null){
-                txtStudentId.setText(s.getsId());
+                txtStudentId.setText(s.getId());
                 txtName.setText(s.getName());
                 txtEmail.setText(s.getEmail());
                 txtContact.setText(s.getContact());
